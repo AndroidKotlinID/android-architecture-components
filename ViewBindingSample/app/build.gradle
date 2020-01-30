@@ -1,5 +1,5 @@
 /*
- * Copyright 2017, The Android Open Source Project
+ * Copyright (C) 2020 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,80 +15,49 @@
  */
 
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion build_versions.target_sdk
-    buildToolsVersion build_versions.build_tools
-
     defaultConfig {
-        applicationId 'com.example.android.persistence'
+        applicationId "com.android.example.viewbindingsample"
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        vectorDrawables {
-            useSupportLibrary = true
-        }
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = ["room.schemaLocation":
-                                     "$projectDir/schemas".toString()]
-            }
-        }
     }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    dataBinding {
+    viewBinding {
         enabled = true
-    }
-    productFlavors {
-    }
-
-    lintOptions {
-        abortOnError false
-    }
-
-    compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
     }
 }
 
 dependencies {
     implementation deps.app_compat
-    implementation deps.fragment.runtime
     implementation deps.material
-    implementation deps.cardview
-
-    // Architecture components
+    implementation deps.core_ktx
+    implementation deps.constraint_layout
     implementation deps.lifecycle.runtime
-    annotationProcessor deps.lifecycle.compiler
-    implementation deps.room.runtime
-    annotationProcessor deps.room.compiler
+    implementation deps.lifecycle.viewmodel_ktx
+    implementation deps.lifecycle.livedata_ktx
+    implementation deps.activity.activity_ktx
 
-    // Android Testing Support Library's runner and rules
-    androidTestImplementation deps.atsl.core
-    androidTestImplementation deps.atsl.ext_junit
+    implementation deps.kotlin.stdlib
+
+    testImplementation deps.junit
+    testImplementation deps.arch_core.testing
+
     androidTestImplementation deps.atsl.runner
     androidTestImplementation deps.atsl.rules
-    androidTestImplementation deps.room.testing
-    androidTestImplementation deps.arch_core.testing
-
-    // Espresso UI Testing
+    androidTestImplementation deps.atsl.ext_junit
     androidTestImplementation deps.espresso.core
     androidTestImplementation deps.espresso.contrib
-    androidTestImplementation deps.espresso.intents
-
-    // Resolve conflicts between main and test APK:
-    androidTestImplementation deps.annotations
-    androidTestImplementation deps.app_compat
-    androidTestImplementation deps.material
+    androidTestImplementation deps.arch_core.testing
 }
