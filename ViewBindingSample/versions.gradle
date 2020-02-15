@@ -22,10 +22,10 @@
 ext.deps = [:]
 def versions = [:]
 versions.activity = '1.0.0'
-versions.android_gradle_plugin = '3.5.3'
+versions.android_gradle_plugin = '3.6.0-rc03'
 versions.annotations = "1.0.0"
 versions.apache_commons = "2.5"
-versions.appcompat = "1.1.0-rc01"
+versions.appcompat = "1.2.0-alpha02"
 versions.arch_core = "2.1.0"
 versions.atsl_core = "1.2.0"
 versions.atsl_junit = "1.1.1"
@@ -53,7 +53,7 @@ versions.mockito_android = "2.25.0"
 versions.mockwebserver = "3.8.1"
 versions.navigation = "2.2.0-rc04"
 versions.okhttp_logging_interceptor = "3.9.0"
-versions.paging = "2.1.0"
+versions.paging = "2.1.1"
 versions.recyclerview = "1.0.0"
 versions.retrofit = "2.3.0"
 versions.robolectric = "4.2"
@@ -66,8 +66,9 @@ ext.versions = versions
 
 def build_versions = [:]
 build_versions.min_sdk = 14
-build_versions.target_sdk = 28
-build_versions.build_tools = "28.0.3"
+build_versions.compile_sdk = 29
+build_versions.target_sdk = 29
+build_versions.build_tools = "29.0.3"
 ext.build_versions = build_versions
 
 def deps = [:]
